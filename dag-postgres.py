@@ -52,7 +52,10 @@ def sql_connection() -> Connection:
 
 
 
-def consulta(engine):
+def consulta():
+    
+    engine = conectar_banco()
+    
     
     import pandas as pd 
     
@@ -71,16 +74,13 @@ with DAG(
         schedule='0 0 * * 1', # executar toda segunda feira
 ) as dag:
      
-    t1 = PythonOperator(
-         task_id = 'conecta_banco',
-         python_callable  = conectar_banco,)
+    # t1 = PythonOperator(
+    #      task_id = 'conecta_banco',
+    #      python_callable  = conectar_banco,)
 
 
     t2 = PythonOperator(
         task_id = 'consulta',
-        python_callable= consulta,
-        op_kwargs={'engine' : t1.output}
-    )
+        python_callable= consulta,)
 
-t1 >> t2
 
