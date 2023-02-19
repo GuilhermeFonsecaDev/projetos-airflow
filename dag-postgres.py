@@ -63,7 +63,7 @@ def consulta():
 
     df = pd.read_sql(query,engine)
 
-    print(df[0])
+    print(df)
 
 
 
