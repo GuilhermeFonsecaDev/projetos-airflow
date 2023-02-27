@@ -16,7 +16,7 @@ def get_data(ti):
     lista = []
 
 
-    for i in range(0,10): 
+    for i in range(0,20): 
         response = rq.get('https://randomuser.me/api/')
     
         json =  response.json()
@@ -39,7 +39,10 @@ def print_a_data(ti):
     
     lista = ti.xcom_pull(task_ids="ext_data")
     
-    print(lista)
+
+    df = pd.json_normalize(lista)
+
+    print(df.loc[0,1])
    
 
 
