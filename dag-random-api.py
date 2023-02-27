@@ -39,10 +39,8 @@ def print_a_data(ti):
     
     lista = ti.xcom_pull(key="data_list", task_ids="ext_data")
     
-    df = pd.json_normalize(lista)
-
    
-    print(df.iloc[0,1])
+    print(lista)
    
 
 
