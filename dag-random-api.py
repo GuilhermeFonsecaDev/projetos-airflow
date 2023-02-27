@@ -30,17 +30,21 @@ def get_data(ti):
         
     #df = pd.json_normalize(lista)
     
-    ti.xcom_push(key="data_list", value= lista)
+    return lista
    
 
 
 
 def print_a_data(ti):
     
-    lista = ti.xcom_pull(key="data_list", task_ids="ext_data")
+    lista = ti.xcom_pull(task_ids="ext_data")
     
-   
     print(lista)
+   
+
+
+
+    
    
 
 
@@ -57,9 +61,9 @@ with DAG(
          python_callable  = get_data,)
 
 
-    print = PythonOperator(
+    print_data = PythonOperator(
         task_id = 'print_data',
         python_callable= print_a_data,)
 
 
-ext >> print
+ext >> print_data
