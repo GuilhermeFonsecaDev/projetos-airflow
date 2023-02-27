@@ -42,7 +42,7 @@ def print_a_data(ti):
     df = pd.json_normalize(lista)
 
    
-    print(df[0])
+    print(df.iloc[0,1])
    
 
 
